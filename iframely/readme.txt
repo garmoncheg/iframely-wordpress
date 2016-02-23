@@ -124,6 +124,10 @@ Iframely will work well with multisite installations. Iframely options page is a
 
 == Changelog ==
 
+= 0.3.0 =
+
+ - Use native Twitter oEmbed support
+
 = 0.2.9 =
 
 Since WP 4.4, your site [publishes embeds](https://make.wordpress.org/core/2015/10/28/new-embeds-feature-in-wordpress-4-4/) by default so that other WP sites can embed summaries of your posts.
@@ -177,6 +181,10 @@ And please, help do submit issues if you see any.
 
 
 == Upgrade Notice ==
+
+= 0.3.0 =
+
+IMPORTANT: This update fixes Twitter embeds by moving them to native WordPress implementation.
 
 = 0.2.9 =
 

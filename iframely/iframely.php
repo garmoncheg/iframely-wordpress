@@ -4,7 +4,7 @@ Plugin Name: Iframely
 Plugin URI: http://wordpress.org/plugins/iframely/
 Description: Iframely for WordPress. Embed anything, with responsive widgets.
 Author: Itteco Corp.
-Version: 0.2.9
+Version: 0.3.0
 Author URI: https://iframely.com/?from=wp
 */
 
@@ -17,6 +17,9 @@ if ( !defined( 'IFRAMELY_URL' ) ) {
 
 # Add iframely as oembed provider for ANY url, yes it will process any url on separate line with wp oembed functions
 wp_oembed_add_provider( '#https?://[^\s]+#i', iframely_create_api_link(), true );
+
+# Wrap Twitter native oEmbed on both sides of Iframely array, so that default Twitter is always used
+wp_oembed_add_provider( '#https?://twitter\.com/.+?/status(es)?/.*#i', 'https://api.twitter.com/1/statuses/oembed.{format}?hide_thread=true&align=center', true );
 
 # Make the Iframely endpoint to be the first in queue, otherwise default regexp are precedent
 add_filter( 'oembed_providers', 'maybe_reverse_oembed_providers');
@@ -98,7 +101,6 @@ function iframely_create_api_link ($origin = '') {
     # Read API key from plugin options
     $api_key = trim( get_site_option( 'iframely_api_key' ) );
     $link = $api_key ? 'http://iframe.ly/api/oembed': 'http://open.iframe.ly/api/oembed';
-    //$link = 'http://localhost:8061/oembed';
 
     $link = add_query_arg( array(
         'origin'    => '' !== $origin ? $origin : preg_replace( '#^https?://#i', '', get_bloginfo( 'url' ) ),
