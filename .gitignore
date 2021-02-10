@@ -1,0 +1,11 @@
+.gitignore
+iframely/node_modules
+.idea
+
+# Repository inside plugin directory
+.babelrc
+iframely.php
+readme.txt
+src*
+ui*
+.DS_Store
